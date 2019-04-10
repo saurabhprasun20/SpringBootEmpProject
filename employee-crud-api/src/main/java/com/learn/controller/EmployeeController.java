@@ -12,42 +12,42 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.learn.model.Laptop;
-import com.learn.service.LaptopServiceImpl;
+import com.learn.model.Employee;
+import com.learn.service.EmployeeServiceImpl;
 
 @RestController
 @EnableAutoConfiguration
-@RequestMapping(value = "/laptop")
-public class LaptopController {
+@RequestMapping(value = "/employee")
+public class EmployeeController {
 	
 	@Autowired
-	LaptopServiceImpl service;
+	EmployeeServiceImpl empService;	
 	
 	@PostMapping("/save")
-	public Laptop save(@RequestBody Laptop laptop)
+	public Employee save(@RequestBody Employee employee)
 	{
-		service.saveOrUpdate(laptop);
-		return laptop;
+		empService.saveOrUpdate(employee);
+		return employee;
 		
 	}
 	
 	@GetMapping("/list")
-	public List<Laptop> list()
+	public List<Employee> list()
 	{
-		return service.getAllLaptop();
+		return empService.getAllEmployee();
 		
 	}
 	
 	@GetMapping("/list/{id}")
-	public Laptop getById(@PathVariable int id)
+	public Employee getById(@PathVariable int id)
 	{
-		return service.getById(id);
+		return empService.getById(id);
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public String deleteLaptop(@PathVariable int id)
+	public String deleteEmployee(@PathVariable int id)
 	{
-		service.deleteLaptop(id);
+		empService.deleteEmployee(id);
 		return "Deleted Successfully";
 	}
 
